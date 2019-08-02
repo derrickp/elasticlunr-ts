@@ -13,6 +13,7 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
+    "compile": "tsc -v && tsc --noEmit",
     "test": "jest"
   }
 }
