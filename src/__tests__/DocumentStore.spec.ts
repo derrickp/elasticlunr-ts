@@ -44,7 +44,7 @@ describe("DocumentStore", () => {
     it("reports length correctly", () => {
       const store = new DocumentStore();
       store.addDoc(key, doc);
-      expect(store.length).toEqual(1);
+      expect(store).toHaveLength(1);
     });
 
     it("reports it has the doc", () => {
@@ -64,7 +64,7 @@ describe("DocumentStore", () => {
 
       store.addDoc(key, doc);
       store.removeDoc(key);
-      expect(store.length).toEqual(0);
+      expect(store).toHaveLength(0);
       expect(store.getDoc(key)).toBeNull();
     });
 
@@ -79,9 +79,9 @@ describe("DocumentStore", () => {
   describe("length", () => {
     it("reports length", () => {
       const store = new DocumentStore();
-      expect(store.length).toEqual(0);
+      expect(store).toHaveLength(0);
       store.addDoc(key, doc);
-      expect(store.length).toEqual(1);
+      expect(store).toHaveLength(1);
     });
   });
 
@@ -120,9 +120,9 @@ describe("DocumentStore", () => {
     it("removes doc and updates length", () => {
       const store = new DocumentStore();
       store.addDoc(key, doc);
-      expect(store.length).toEqual(1);
+      expect(store).toHaveLength(1);
       store.removeDoc(key);
-      expect(store.length).toEqual(0);
+      expect(store).toHaveLength(0);
       expect(store.getDoc(key)).toBeNull();
     });
 
@@ -130,7 +130,7 @@ describe("DocumentStore", () => {
       const store = new DocumentStore();
       store.addDoc(key, doc);
       store.removeDoc(multiKey);
-      expect(store.length).toEqual(1);
+      expect(store).toHaveLength(1);
     });
   });
 
@@ -243,7 +243,7 @@ describe("DocumentStore", () => {
           save: true
         };
         const store = DocumentStore.load(serializedData);
-        expect(store.length).toEqual(1);
+        expect(store).toHaveLength(1);
         expect(store.isDocStored).toEqual(true);
         expect(store.getFieldLength(key, "title")).toEqual(2);
         expect(store.getFieldLength(key, "body")).toEqual(20);
@@ -264,7 +264,7 @@ describe("DocumentStore", () => {
         const data = JSON.parse(JSON.stringify(serializedData));
 
         const store = DocumentStore.load(data);
-        expect(store.length).toEqual(2);
+        expect(store).toHaveLength(2);
         expect(store.isDocStored).toEqual(false);
         expect(store.hasDoc(key)).toEqual(true);
         expect(store.hasDoc(multiKey)).toEqual(true);

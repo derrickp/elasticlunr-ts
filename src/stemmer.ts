@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 const step2list: { [key: string]: string } = {
   ational: "ate",
   tional: "tion",
@@ -72,7 +74,7 @@ const re3_5 = new RegExp("^" + C + v + "[^aeiouwxy]$");
  * Copyright (C) @YEAR Wei Song
  * Includes code from - http://tartarus.org/~martin/PorterStemmer/js.txt
  */
-export function porterStem(word: string) {
+export function porterStem(word: string): string {
   let stem, suffix, firstch, re, re2, re3, re4;
 
   if (word.length < 3) {
@@ -205,3 +207,4 @@ export function porterStem(word: string) {
 
   return output;
 }
+/* eslint-enable @typescript-eslint/camelcase */

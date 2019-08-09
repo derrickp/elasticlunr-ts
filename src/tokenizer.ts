@@ -1,18 +1,29 @@
 import { toString } from "./utils";
 
-export const defaultSeperator = /[\s\-]+/;
+export const defaultSeperator = /[\s-]+/;
 
 let separator = defaultSeperator;
 
-export function setSeparator(sep: RegExp) {
+function tokenizeSingle(str: string): string[] {
+  if (str === undefined || str === null) {
+    return [];
+  }
+  return str
+    .toString()
+    .trim()
+    .toLowerCase()
+    .split(separator);
+}
+
+export function setSeparator(sep: RegExp): void {
   separator = sep;
 }
 
-export function resetSeparator() {
+export function resetSeparator(): void {
   separator = defaultSeperator;
 }
 
-export function getSeparator() {
+export function getSeparator(): RegExp {
   return separator;
 }
 
@@ -29,15 +40,4 @@ export function tokenize(str: any | any[]): string[] {
   } else {
     return tokenizeSingle(str);
   }
-}
-
-function tokenizeSingle(str: string): string[] {
-  if (str === undefined || str === null) {
-    return [];
-  }
-  return str
-    .toString()
-    .trim()
-    .toLowerCase()
-    .split(separator);
 }

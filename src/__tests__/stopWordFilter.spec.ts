@@ -3,7 +3,6 @@ import {
   clearStopWords,
   getStopWords,
   resetStopWords,
-  setStopWords,
   stopWordFilter,
   defaultStopWords
 } from "../stopWordFilter";

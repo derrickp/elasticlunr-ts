@@ -139,13 +139,13 @@ describe("tokenize()", () => {
 
 describe("setSeparator()", () => {
   it("uses the custom separator", () => {
-    const sep = /[\/]+/;
+    const sep = /[/]+/;
     const s = "hello/world/I/love";
 
     const sep2 = /[\\]+/;
     const s2 = "hello\\world\\I\\love";
 
-    const sep3 = /[\/\%]+/;
+    const sep3 = /[/%]+/;
     const s3 = "hello/world/%%%apple%pie";
 
     setSeparator(sep);
@@ -161,7 +161,7 @@ describe("setSeparator()", () => {
 
 describe("resetSeparator()", () => {
   it("properly resets the separator", () => {
-    const sep = /[\/]+/;
+    const sep = /[/]+/;
     const s = "hello world I love apple";
 
     setSeparator(sep);
@@ -172,7 +172,7 @@ describe("resetSeparator()", () => {
 
 describe("getSeparator()", () => {
   it("gets the current separator", () => {
-    const sep = /[\/]+/;
+    const sep = /[/]+/;
     setSeparator(sep);
     expect(getSeparator()).toStrictEqual(sep);
 

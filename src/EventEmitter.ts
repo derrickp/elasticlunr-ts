@@ -28,7 +28,7 @@ export class EventEmitter {
     };
   }
 
-  emit(name: string, event?: any) {
+  emit(name: string, event?: any): void {
     if (!this._handlers.has(name)) {
       return;
     }

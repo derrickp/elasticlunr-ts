@@ -1,4 +1,4 @@
-export function toString(obj: any) {
+export function toString(obj: any): string {
   if (!obj) {
     return "";
   }

@@ -5,25 +5,32 @@ export interface SerializedData {
   length: number;
 }
 
+function clone(obj: Record<string, any>): Record<string, any> {
+  if (!obj || typeof obj !== "object") return obj;
+  const target = {};
+  Object.assign(target, obj);
+  return target;
+}
+
 export class DocumentStore {
   private _save: boolean = true;
-  private _docs: { [key: string]: Object | null } = {};
+  private _docs: { [key: string]: Record<string, any> | null } = {};
   private _docInfo: any = {};
   private _length: number = 0;
 
-  get isDocStored() {
+  get isDocStored(): boolean {
     return this._save;
   }
 
-  get length() {
+  get length(): number {
     return this._length;
   }
 
-  get docInfo() {
+  get docInfo(): any {
     return this._docInfo;
   }
 
-  public static load(serializedData: SerializedData): DocumentStore {
+  static load(serializedData: SerializedData): DocumentStore {
     const store = new DocumentStore(serializedData.save);
     store._docInfo = serializedData.docInfo;
     store._docs = serializedData.docs;
@@ -46,7 +53,7 @@ export class DocumentStore {
    * @param {String} docRef The key used to store the JSON format doc.
    * @param {Object} doc The JSON format doc.
    */
-  addDoc(docRef: string, doc: Object) {
+  addDoc(docRef: string, doc: Record<string, any>): void {
     if (!this.hasDoc(docRef)) {
       this._length++;
     }
@@ -58,7 +65,7 @@ export class DocumentStore {
     }
   }
 
-  getDoc(docRef: string): Object | null {
+  getDoc(docRef: string): Record<string, any> | null {
     if (!this.hasDoc(docRef)) {
       return null;
     }
@@ -88,7 +95,7 @@ export class DocumentStore {
    * @param {String} fieldName field name
    * @param {Integer} length field length
    */
-  addFieldLength(docRef: string, fieldName: string, length: number) {
+  addFieldLength(docRef: string, fieldName: string, length: number): void {
     if (!this._validateArg(docRef) || !this.hasDoc(docRef)) {
       return;
     }
@@ -107,7 +114,7 @@ export class DocumentStore {
    * @param {String} fieldName field name
    * @return {Integer} field length
    */
-  updateFieldLength(docRef: string, fieldName: string, length: number) {
+  updateFieldLength(docRef: string, fieldName: string, length: number): void {
     if (!this._validateArg(docRef) || !this.hasDoc(docRef)) {
       return;
     }
@@ -115,7 +122,7 @@ export class DocumentStore {
     this.addFieldLength(docRef, fieldName, length);
   }
 
-  getFieldLength(docRef: string, fieldName: string) {
+  getFieldLength(docRef: string, fieldName: string): number {
     if (!this._validateArg(docRef) || !this.hasDoc(docRef)) {
       return 0;
     }
@@ -141,17 +148,10 @@ export class DocumentStore {
     };
   }
 
-  private _validateArg(arg: string) {
+  private _validateArg(arg: string): boolean {
     if (arg === null || arg === undefined) {
       return false;
     }
     return true;
   }
-}
-
-function clone(obj: Object): Object {
-  if (!obj || typeof obj !== "object") return obj;
-  const target = {};
-  Object.assign(target, obj);
-  return target;
 }

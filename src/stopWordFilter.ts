@@ -123,23 +123,23 @@ export const defaultStopWords: { [key: string]: boolean } = {
 
 let stopWords = defaultStopWords;
 
-export function setStopWords(words: { [key: string]: boolean }) {
+export function setStopWords(words: { [key: string]: boolean }): void {
   stopWords = words;
 }
 
-export function resetStopWords() {
+export function resetStopWords(): void {
   stopWords = defaultStopWords;
 }
 
-export function getStopWords() {
+export function getStopWords(): { [key: string]: boolean } {
   return stopWords;
 }
 
-export function clearStopWords() {
+export function clearStopWords(): void {
   stopWords = {};
 }
 
-export function addStopWords(words: string[]) {
+export function addStopWords(words: string[]): void {
   if (!words) {
     return;
   }
