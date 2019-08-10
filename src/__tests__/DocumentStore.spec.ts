@@ -85,6 +85,24 @@ describe("DocumentStore", () => {
     });
   });
 
+  describe("addDoc()", () => {
+    it("can add a null doc", () => {
+      const store = new DocumentStore();
+      store.addDoc("thing", null as any);
+      expect(store.hasDoc("thing")).toEqual(true);
+    });
+
+    it("does not increment length when given it again", () => {
+      const store = new DocumentStore();
+      expect(store).toHaveLength(0);
+      store.addDoc(key, doc);
+      store.addDoc(key, doc);
+      store.addDoc(key, doc);
+      store.addDoc(key, doc);
+      expect(store).toHaveLength(1);
+    });
+  });
+
   describe("getDoc()", () => {
     it("gets the doc", () => {
       const store = new DocumentStore();
@@ -173,6 +191,20 @@ describe("DocumentStore", () => {
       store.removeDoc(key);
       expect(store.getFieldLength(key, "title")).toEqual(0);
       expect(store.getFieldLength(key, "body")).toEqual(0);
+    });
+  });
+
+  describe("getFieldLength()", () => {
+    it("returns 0 when given an invalid field", () => {
+      const store = new DocumentStore();
+      expect(store.getFieldLength(undefined as any, "field")).toEqual(0);
+    });
+
+    it("returns 0 when it cannot find docRef", () => {
+      const store = new DocumentStore();
+      store.addDoc(key, doc);
+      store.addFieldLength(key, "title", 2);
+      expect(store.getFieldLength(key, "foozbah")).toEqual(0);
     });
   });
 
