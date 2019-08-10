@@ -107,21 +107,6 @@ export class DocumentStore {
     this._docInfo[docRef][fieldName] = length;
   }
 
-  /**
-   * get field length of a document by docRef
-   *
-   * @param {String} docRef document id or reference
-   * @param {String} fieldName field name
-   * @return {Integer} field length
-   */
-  updateFieldLength(docRef: string, fieldName: string, length: number): void {
-    if (!this._validateArg(docRef) || !this.hasDoc(docRef)) {
-      return;
-    }
-
-    this.addFieldLength(docRef, fieldName, length);
-  }
-
   getFieldLength(docRef: string, fieldName: string): number {
     if (!this._validateArg(docRef) || !this.hasDoc(docRef)) {
       return 0;
