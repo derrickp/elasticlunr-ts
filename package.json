@@ -18,6 +18,8 @@
   },
   "scripts": {
     "compile": "tsc -v && tsc --noEmit",
-    "test": "jest"
+    "test": "jest --coverage",
+    "lint": "eslint src/**",
+    "build": "npm run lint && npm run compile && npm run test"
   }
 }
