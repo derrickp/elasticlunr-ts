@@ -1,12 +1,11 @@
-import { stemmingFixture } from "./fixtures/stemmingVocab";
-import { porterStem } from "../stemmer";
+import { stem } from "../stemmer";
+import { getVocab } from "./fixtures/vocab";
 
-describe("porterStem()", () => {
-  it("should stem the example words correctly", () => {
-    Object.keys(stemmingFixture).forEach(word => {
-      const expected = stemmingFixture[word];
-
-      expect(porterStem(word)).toStrictEqual(expected);
-    });
+describe("stem()", () => {
+  it("stems the word according to vocab", () => {
+    const stemmingVocabs = getVocab();
+    for (const stemVocab of stemmingVocabs) {
+      expect(stem(stemVocab.input)).toEqual(stemVocab.output);
+    }
   });
 });
