@@ -3,7 +3,7 @@ import {
   getSeparator,
   resetSeparator,
   setSeparator,
-  tokenize
+  tokenize,
 } from "../tokenizer";
 
 describe("tokenize()", () => {
@@ -56,7 +56,7 @@ describe("tokenize()", () => {
     const obj = {
       toString: () => {
         return "custom object";
-      }
+      },
     };
 
     expect(tokenize(41)).toStrictEqual(["41"]);
@@ -69,7 +69,7 @@ describe("tokenize()", () => {
       "tue",
       "jan",
       "01",
-      "2013"
+      "2013",
     ]);
   });
 
@@ -84,7 +84,7 @@ describe("tokenize()", () => {
       "york",
       "san",
       "francisco",
-      "flight"
+      "flight",
     ]);
   });
 
@@ -105,7 +105,7 @@ describe("tokenize()", () => {
         "glad",
         "to",
         "see",
-        "you"
+        "you",
       ]);
     });
 
@@ -131,7 +131,7 @@ describe("tokenize()", () => {
         "see",
         "you",
         "hyper",
-        "parameters"
+        "parameters",
       ]);
     });
   });

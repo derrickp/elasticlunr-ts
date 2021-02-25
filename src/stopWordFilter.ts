@@ -118,7 +118,7 @@ export const defaultStopWords: { [key: string]: boolean } = {
   would: true,
   yet: true,
   you: true,
-  your: true
+  your: true,
 };
 
 let stopWords = defaultStopWords;

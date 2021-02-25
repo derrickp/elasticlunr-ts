@@ -4,7 +4,6 @@ type EventCallback = (name: string, event: any) => void;
 
 export class EventEmitter {
   private _handlers: Map<string, EventCallback[]> = new Map();
-  constructor() {}
 
   addListener(names: string[], callback: EventCallback): Handle {
     for (const name of names) {
@@ -24,7 +23,7 @@ export class EventEmitter {
             this._handlers.set(name, registered);
           }
         }
-      }
+      },
     };
   }
 

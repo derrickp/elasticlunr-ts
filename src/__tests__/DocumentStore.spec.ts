@@ -4,7 +4,7 @@ describe("DocumentStore", () => {
   const doc = { title: "eggs bread" };
   const multiFieldDoc = {
     title: "godzilla",
-    body: "godzilla is king of monsters"
+    body: "godzilla is king of monsters",
   };
 
   const key = "foo";
@@ -115,7 +115,7 @@ describe("DocumentStore", () => {
       store.addDoc(multiKey, multiFieldDoc);
       expect(store.getDoc(multiKey)).toEqual({
         title: "godzilla",
-        body: "godzilla is king of monsters"
+        body: "godzilla is king of monsters",
       });
     });
 
@@ -216,7 +216,7 @@ describe("DocumentStore", () => {
           docs: {},
           docInfo: {},
           length: 0,
-          save: true
+          save: true,
         });
       });
 
@@ -227,7 +227,7 @@ describe("DocumentStore", () => {
           docs: { foo: { title: "eggs bread" } },
           docInfo: {},
           length: 1,
-          save: true
+          save: true,
         };
         expect(store.toJSON()).toEqual(expected);
       });
@@ -241,7 +241,7 @@ describe("DocumentStore", () => {
             docs: { foo: { title: "eggs bread" } },
             docInfo: { foo: { title: 2 } },
             length: 1,
-            save: true
+            save: true,
           };
           expect(store.toJSON()).toEqual(expected);
         });
@@ -255,7 +255,7 @@ describe("DocumentStore", () => {
             docs: { foo: null },
             docInfo: {},
             length: 1,
-            save: false
+            save: false,
           };
           expect(store.toJSON()).toEqual(expected);
         });
@@ -267,12 +267,12 @@ describe("DocumentStore", () => {
         const serializedData: SerializedData = {
           length: 1,
           docs: {
-            foo: { title: "eggs bread" }
+            foo: { title: "eggs bread" },
           },
           docInfo: {
-            foo: { title: 2, body: 20 }
+            foo: { title: 2, body: 20 },
           },
-          save: true
+          save: true,
         };
         const store = DocumentStore.load(serializedData);
         expect(store).toHaveLength(1);
@@ -287,10 +287,10 @@ describe("DocumentStore", () => {
           length: 2,
           docs: {
             foo: null,
-            bar: null
+            bar: null,
           },
           docInfo: {},
-          save: false
+          save: false,
         };
 
         const data = JSON.parse(JSON.stringify(serializedData));

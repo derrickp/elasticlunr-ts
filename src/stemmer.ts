@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 const firstExceptions: Map<string, string> = new Map([
   /* special changes: */
   ["skis", "ski"],
@@ -67,7 +65,7 @@ const rangesTest = /[^aeiouy]*[aeiouy]+[^aeiouy](\w*)/;
 const step1bSuffixesTest = /(ed|edly|ing|ingly)$/;
 const step1bTest = /[aeiouy]/;
 
-function capitalizeY(word: string) {
+function capitalizeY(word: string): string {
   let innerWord = word.slice();
 
   if (innerWord.charCodeAt(0) === charCodes.lowerCaseY) {
@@ -77,7 +75,7 @@ function capitalizeY(word: string) {
   return innerWord.replace(capitalizeYTest, "$1Y");
 }
 
-function removeLeadingApostrophe(word: string) {
+function removeLeadingApostrophe(word: string): string {
   if (word.charCodeAt(0) === charCodes.apostrophe) {
     return word.slice(1);
   }
@@ -138,7 +136,7 @@ function isDoubleEnding(word: string): boolean {
     charCodes.lowerCaseT,
   ];
   const lastLetter = word.charCodeAt(word.length - 1);
-  const isDoubleEndingLetter = endingConsonants.some(l => l === lastLetter);
+  const isDoubleEndingLetter = endingConsonants.some((l) => l === lastLetter);
   return (
     lastLetter === word.charCodeAt(word.length - 2) && isDoubleEndingLetter
   );
@@ -194,18 +192,18 @@ function isNonVowel(charCode: number): boolean {
   return (
     charCode < charCodes.lowerCaseA ||
     charCode > charCodes.lowerCaseY ||
-    !vowels.some(v => v === charCode)
+    !vowels.some((v) => v === charCode)
   );
 }
 
 function handleYSuffix(word: string): string {
   if (word.length > 2) {
-    let lastLetter = word.charCodeAt(word.length - 1);
+    const lastLetter = word.charCodeAt(word.length - 1);
     if (
       lastLetter === charCodes.lowerCaseY ||
       lastLetter === charCodes.upperCaseY
     ) {
-      let secondLastLetter = word.charCodeAt(word.length - 2);
+      const secondLastLetter = word.charCodeAt(word.length - 2);
       // "a|e|i|o|u|y"
       if (isNonVowel(secondLastLetter)) {
         return word.slice(0, -1) + "i";
@@ -428,7 +426,7 @@ export function stem(toStem: string): string {
   word = step4(word, r2);
 
   // step 5
-  let l = word.charCodeAt(word.length - 1);
+  const l = word.charCodeAt(word.length - 1);
 
   if (l === 108) {
     // l = 108
@@ -453,5 +451,3 @@ export function stem(toStem: string): string {
 
   return word;
 }
-
-/* eslint-enable @typescript-eslint/camelcase */

@@ -6,7 +6,7 @@ function buildTokenInfo(ref: string, tf: number): TokenInfo {
 
 describe("InvertedIndex", () => {
   it("constructs empty index", () => {
-    let index = new InvertedIndex();
+    const index = new InvertedIndex();
     expect(index.root).toEqual({ docs: {}, df: 0 });
     expect(index.root.df).toEqual(0);
   });
@@ -249,7 +249,7 @@ describe("InvertedIndex", () => {
       expect(index.getDocs("foo")).toEqual({
         "123": { tf: 1 },
         "234": { tf: 100 },
-        "345": { tf: 101 }
+        "345": { tf: 101 },
       });
     });
   });
@@ -361,11 +361,11 @@ describe("InvertedIndex", () => {
             docs: {},
             o: {
               df: 1,
-              docs: { "123": { tf: 1 } }
-            }
-          }
-        }
-      }
+              docs: { "123": { tf: 1 } },
+            },
+          },
+        },
+      },
     });
   });
 
@@ -382,11 +382,11 @@ describe("InvertedIndex", () => {
             docs: {},
             o: {
               df: 1,
-              docs: { "123": { tf: 1 } }
-            }
-          }
-        }
-      }
+              docs: { "123": { tf: 1 } },
+            },
+          },
+        },
+      },
     };
 
     const index = InvertedIndex.load(serialisedData);

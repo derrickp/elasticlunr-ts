@@ -26,7 +26,7 @@ export interface TokenInfo extends DocInfo {
 export class InvertedIndex {
   private _root: Root = {
     docs: {},
-    df: 0
+    df: 0,
   };
 
   static load(serializedData: SerializedData): InvertedIndex {
@@ -234,7 +234,7 @@ export class InvertedIndex {
 
   toJSON(): { root: Root } {
     return {
-      root: this._root
+      root: this._root,
     };
   }
 }

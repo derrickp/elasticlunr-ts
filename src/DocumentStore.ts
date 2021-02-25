@@ -13,10 +13,10 @@ function clone(obj: Record<string, any>): Record<string, any> {
 }
 
 export class DocumentStore {
-  private _save: boolean = true;
+  private _save = true;
   private _docs: { [key: string]: Record<string, any> | null } = {};
   private _docInfo: any = {};
-  private _length: number = 0;
+  private _length = 0;
 
   get isDocStored(): boolean {
     return this._save;
@@ -129,7 +129,7 @@ export class DocumentStore {
       docs: this._docs,
       docInfo: this._docInfo,
       length: this._length,
-      save: this._save
+      save: this._save,
     };
   }
 

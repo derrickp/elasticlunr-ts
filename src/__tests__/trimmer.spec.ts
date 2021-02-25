@@ -6,7 +6,7 @@ describe("trim()", () => {
     expect(trim(token)).toEqual(token);
   });
 
-  it("removing leading and trailing punctuation", function() {
+  it("removing leading and trailing punctuation", () => {
     const fullStop = "hello.",
       innerApostrophe = "it's",
       trailingApostrophe = "james'",

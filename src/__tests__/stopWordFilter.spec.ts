@@ -4,7 +4,7 @@ import {
   getStopWords,
   resetStopWords,
   stopWordFilter,
-  defaultStopWords
+  defaultStopWords,
 } from "../stopWordFilter";
 
 describe("stopWordFilter()", () => {
@@ -27,7 +27,12 @@ describe("stopWordFilter()", () => {
   });
 
   it("should not filter Object.prototype terms", () => {
-    var nonStopWords = ["constructor", "hasOwnProperty", "toString", "valueOf"];
+    const nonStopWords = [
+      "constructor",
+      "hasOwnProperty",
+      "toString",
+      "valueOf",
+    ];
 
     for (const word of nonStopWords) {
       expect(stopWordFilter(word)).toStrictEqual(word);
